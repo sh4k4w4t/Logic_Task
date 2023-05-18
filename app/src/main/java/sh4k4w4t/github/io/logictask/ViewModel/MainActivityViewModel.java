@@ -17,30 +17,30 @@ import sh4k4w4t.github.io.logictask.Services.Network.RetrofitInterface;
 
 public class MainActivityViewModel extends ViewModel {
     MainModel mainModel;
-    private final MutableLiveData<MainModel> mainModelMutableLiveData= new MutableLiveData<>();
+    private final MutableLiveData<MainModel> mainModelMutableLiveData = new MutableLiveData<>();
 
-    public MutableLiveData<MainModel> getMainModelsData(){
+    public MutableLiveData<MainModel> getMainModelsData() {
         return mainModelMutableLiveData;
     }
 
-    public void allDataGet(Context context){
-        RetrofitInterface retrofitInterface= RetrofitAPI.getRetrofitInterface();
-        Call<MainModel> calls= retrofitInterface.getMainModelData();
+    public void allDataGet(Context context) {
+        RetrofitInterface retrofitInterface = RetrofitAPI.getRetrofitInterface();
+        Call<MainModel> calls = retrofitInterface.getMainModelData();
         calls.clone().enqueue(new Callback<MainModel>() {
             @Override
             public void onResponse(@NonNull Call<MainModel> call, @NonNull Response<MainModel> response) {
-                if (response.isSuccessful() && response.code()==200){
+                if (response.isSuccessful() && response.code() == 200) {
                     try {
-                        mainModel= response.body();
-                        if (mainModel!=null){
+                        mainModel = response.body();
+                        if (mainModel != null) {
                             mainModelMutableLiveData.postValue(mainModel);
-                        }else {
+                        } else {
                             mainModelMutableLiveData.postValue(null);
                         }
-                    }catch (Exception e){
-                        Log.d("TAG", "onResponse: "+e);
+                    } catch (Exception e) {
+                        Log.d("TAG", "onResponse: " + e);
                     }
-                }else {
+                } else {
                     Toast.makeText(context.getApplicationContext(), "No data", Toast.LENGTH_SHORT).show();
                 }
             }

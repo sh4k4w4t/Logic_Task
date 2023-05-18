@@ -10,7 +10,7 @@ import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
 public class RetrofitAPI {
-    static String urlForFetchData="http://59.152.60.149:3362/platform_erp/logic-api/index.php/";
+    static String urlForFetchData = "http://59.152.60.149:3362/platform_erp/logic-api/index.php/";
     public static Retrofit retrofit;
     public static RetrofitInterface retrofitInterface;
 
